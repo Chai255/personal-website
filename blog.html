@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - George's Site</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="index.html">George</a>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="stories.html" class="nav-link">Stories</a>
+        <a href="about.html" class="nav-link">About</a>
+      </div>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <section class="blog-header">
+        <h1 class="page-title fade-in">Blog</h1>
+        <p class="page-subtitle fade-in">Thoughts on data, cars, gaming, and life</p>
+      </section>
+
+      <section class="blog-posts">
+        <div class="posts-grid" id="post-list">
+          <!-- Posts will be populated by JavaScript -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 George. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const posts = [
+      { title: "My First Post", file: "first-post.md", excerpt: "An introduction to my journey in data science and actuarial studies." },
+      { title: "Another Post", file: "second-post.md", excerpt: "Exploring the intersection of gaming and data analysis." }
+    ];
+
+    const list = document.getElementById('post-list');
+    posts.forEach((post, index) => {
+      const postCard = document.createElement('article');
+      postCard.className = 'post-card fade-in';
+      postCard.style.animationDelay = `${index * 0.1}s`;
+      
+      postCard.innerHTML = `
+        <div class="post-content">
+          <h3 class="post-title">${post.title}</h3>
+          <p class="post-excerpt">${post.excerpt}</p>
+          <a href="post.html?file=${post.file}" class="btn btn-secondary">Read More</a>
+        </div>
+      `;
+      
+      list.appendChild(postCard);
+    });
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

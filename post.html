@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post - George's Site</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="index.html">George</a>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="stories.html" class="nav-link">Stories</a>
+        <a href="about.html" class="nav-link">About</a>
+      </div>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="post-navigation">
+        <a href="blog.html" class="btn btn-secondary">
+          ← Back to Blog
+        </a>
+      </div>
+      
+      <article class="post-content" id="content">
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Loading post...</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 George. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get('file');
+
+    if (file) {
+      fetch('blog/' + file)
+        .then(res => res.text())
+        .then(md => {
+          const content = document.getElementById('content');
+          content.innerHTML = marked.parse(md);
+          content.classList.add('fade-in');
+          
+          // Add styling to markdown content
+          const headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+          headings.forEach(heading => {
+            heading.classList.add('markdown-heading');
+          });
+          
+          const paragraphs = content.querySelectorAll('p');
+          paragraphs.forEach(p => {
+            p.classList.add('markdown-paragraph');
+          });
+          
+          const lists = content.querySelectorAll('ul, ol');
+          lists.forEach(list => {
+            list.classList.add('markdown-list');
+          });
+        })
+        .catch(() => {
+          document.getElementById('content').innerHTML = `
+            <div class="error-message">
+              <h2>Post Not Found</h2>
+              <p>The requested post could not be loaded. Please check the URL and try again.</p>
+              <a href="blog.html" class="btn btn-primary">Return to Blog</a>
+            </div>
+          `;
+        });
+    } else {
+      document.getElementById('content').innerHTML = `
+        <div class="error-message">
+          <h2>No Post Selected</h2>
+          <p>Please select a post from the blog to view.</p>
+          <a href="blog.html" class="btn btn-primary">Go to Blog</a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

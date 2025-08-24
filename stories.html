@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories - George's Site</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="index.html">George</a>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="stories.html" class="nav-link active">Stories</a>
+        <a href="about.html" class="nav-link">About</a>
+      </div>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <section class="stories-header">
+        <h1 class="page-title fade-in">Stories</h1>
+        <p class="page-subtitle fade-in">Personal narratives and experiences</p>
+      </section>
+
+      <section class="stories-content">
+        <div class="stories-grid">
+          <article class="story-card fade-in">
+            <div class="story-icon">📖</div>
+            <div class="story-content">
+              <h3>My Story</h3>
+              <p>A personal journey through my studies and interests</p>
+              <a href="stories/my-story.pdf" target="_blank" class="btn btn-primary">Read PDF</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 George. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
